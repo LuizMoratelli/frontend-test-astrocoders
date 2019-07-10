@@ -22,7 +22,9 @@ const params = {
   count: 40,
   result_type: 'recent'
 };
+
 app.get('/tweets', (req, res) => {
+  params.q = req.query.searchTerm && req.query.searchTerm != '#' ? req.query.searchTerm : '#mars';
 
   client.get('search/tweets', params, function(error, tweets, response) {
     if (!error) {
