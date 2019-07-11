@@ -18,20 +18,19 @@ const client = new Twitter({
 });
 
 const params = {
-  q: '#mars',
   count: 40,
   result_type: 'recent'
 };
 
 app.get('/tweets', (req, res) => {
-  params.q = req.query.searchTerm && req.query.searchTerm != '#' ? req.query.searchTerm : '#mars';
+  params.q = `#mars ${req.query.searchTerm}`;
 
-  client.get('search/tweets', params, function(error, tweets, response) {
-    if (!error) {
-      return res.send(tweets);
+  client.get('search/tweets', params, function(error, tweets) {
+    if (error) {
+      return res.status(500).send(error);
     }
-
-    return res.send(error);
+    
+    return res.send(tweets);
   });
 });
 
