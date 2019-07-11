@@ -1,5 +1,5 @@
 # frontend-test-astrocoders
 
-## Setup `.env` Configs
-## Start Server
-## Start Client
+1. Setup `.env` Configs
+2. Start Server
+3. Start Client
