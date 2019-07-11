@@ -25,7 +25,7 @@ const params = {
 app.get('/tweets', (req, res) => {
   params.q = `#mars ${req.query.searchTerm}`;
 
-  client.get('search/tweets', params, function(error, tweets) {
+  client.get('search/tweets', params, (error, tweets) => {
     if (error) {
       return res.status(500).send(error);
     }
