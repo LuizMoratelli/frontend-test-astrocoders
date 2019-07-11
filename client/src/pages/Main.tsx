@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import GlobalStyle from '../styles/global';
+import { GlobalStyle } from '../styles/global';
 
-import Header from '../components/Header';
-import Menu from '../components/Menu';
-import Font from '../components/Font';
-import TweetList from '../components/TweetList';
+import { Header } from '../components/Header';
+import { Menu } from '../components/Menu';
+import { Font } from '../components/Font';
+import { TweetList } from '../components/TweetList';
 
 const Content = styled.div`
   padding: 0 20px;
@@ -18,23 +18,19 @@ const MainSection = styled.section`
   display: flex;
 `;
 
-export default function Main() {
+export function Main() {
   const [tweets, setTweets] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('#mars');
+  const [error, setError] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get('http://192.168.2.26:5000/tweets', {
+    axios.get('http://localhost:5000/tweets', {
       params: {
         searchTerm,
       },
-    }).then((res) => {
-      const { statuses } = res.data;
-
-      setTweets(statuses);
-    }).catch((error) => {
-
-    });
-  }, [searchTerm]);
+    }).then(res => setTweets(res.data.statuses))
+      .catch(e => setError(e));
+  }, [error, searchTerm]);
 
   function handleSearch(term:string) {
     setSearchTerm(term);
@@ -48,7 +44,7 @@ export default function Main() {
         <Header searchTerm={searchTerm} onChange={handleSearch} />
         <MainSection>
           <Menu />
-          <TweetList tweets={tweets} />
+          <TweetList tweets={tweets} error={error} />
         </MainSection>
       </Content>
     </>

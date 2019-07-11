@@ -8,14 +8,15 @@ export const Container = styled.li`
 `;
 
 export const TweetUser = styled.strong`
-  width: 150px;
+  flex: 1;
+  width: 20%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 export const TweetInfo = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
 

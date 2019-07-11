@@ -1,10 +1,10 @@
 import React from 'react';
+import { Icon } from '../Icon';
 import {
   Container,
   Brand,
   SearchBar,
   SideMenu,
-  Icon,
   Photo,
 } from './styles';
 
@@ -18,18 +18,16 @@ interface Props {
   onChange: Function
 }
 
-export default function Header({ searchTerm, onChange } : Props) {
-  return (
-    <Container>
-      <Brand>
-        <Icon src={menuIcon} alt="Menu" />
-        <img src={logo} alt="Logo" />
-        <SearchBar placeholder="Search tweet" onChange={e => onChange(e.target.value)} value={searchTerm} />
-      </Brand>
-      <SideMenu>
-        <Icon src={itemsIcon} alt="Item" />
-        <Photo src={avatar} alt="Avatar" />
-      </SideMenu>
-    </Container>
-  );
-}
+export const Header = ({ searchTerm, onChange } : Props) => (
+  <Container>
+    <Brand>
+      <Icon src={menuIcon} alt="Menu" />
+      <img src={logo} alt="Logo" />
+      <SearchBar placeholder="Search tweet" onChange={e => onChange(e.target.value)} value={searchTerm} />
+    </Brand>
+    <SideMenu>
+      <Icon src={itemsIcon} alt="Item" />
+      <Photo src={avatar} alt="Avatar" />
+    </SideMenu>
+  </Container>
+);

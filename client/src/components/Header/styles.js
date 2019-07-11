@@ -37,11 +37,6 @@ export const SideMenu = styled.div`
   justify-content: space-between;
 `;
 
-export const Icon = styled.img`
-  width: 32px;
-  height: 32px;
-`;
-
 export const Photo = styled.img`
   border-radius: 50%;
 `;

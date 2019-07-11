@@ -1,10 +1,12 @@
 import React from 'react';
 import * as R from 'ramda';
 import { Container } from './styles';
-import Tweet from '../Tweet';
+import { Tweet } from '../Tweet';
+import { ErrorDisplay } from '../ErrorDisplay';
 
 interface Props {
-  tweets: Tweet[],
+  tweets: Tweet[]
+  error: string
 }
 
 interface Tweet {
@@ -16,7 +18,13 @@ interface Tweet {
   }
 }
 
-export default function TweetList({ tweets } : Props) {
+export function TweetList({ tweets, error } : Props) {
+  if (!R.isEmpty(error)) {
+    return (
+      <ErrorDisplay message="No tweets found with #mars" />
+    );
+  }
+
   return (
     <Container>
       { R.map((tweet: Tweet) => (
